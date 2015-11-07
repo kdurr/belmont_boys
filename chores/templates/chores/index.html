@@ -1,13 +1,21 @@
-<a href="{% url 'chores:event_new' %}" class='new-event'>Add New Event</a>
+{% load staticfiles %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'foundation/css/foundation.css' %}">
+    </head>
+    <body>
+        <a href="{% url 'chores:event_new' %}" class='new-event'>Add New Event</a>
 
-{% if event_list %}
-    <ul>
-    {% for event in event_list %}
-        <li>{{ event.roomie }}</li>
-        <div>{{ event.chore }}</div>
-        <div><a href="{% url 'chores:detail' event.id %}">{{ event.comment }}</a></div>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No events exist.</p>
-{% endif %}
+        {% if event_list %}
+            <ul>
+            {% for event in event_list %}
+                <li>{{ event.roomie }}</li>
+                <div>{{ event.chore }}</div>
+                <div><a href="{% url 'chores:detail' event.id %}">{{ event.comment }}</a></div>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No events exist.</p>
+        {% endif %}
+    </body>
+</html>

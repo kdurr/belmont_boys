@@ -38,7 +38,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'chores',
-    # 'foundation',
 )
 
 MIDDLEWARE_CLASSES = (

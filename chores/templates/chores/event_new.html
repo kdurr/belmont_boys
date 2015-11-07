@@ -1,11 +1,16 @@
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+{% load staticfiles %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'foundation/css/foundation.css' %}">
+    </head>
+    <body>
+      {% block content %}
+        <h1>New Event</h1>
+        <form method='POST' class='event-form'>{% csrf_token %}
+          {{ form.as_p }}
+          <button type='submit' class='save btn btn-default'>Save</button>
+        </form>
 
-{% block content %}
-  <h1>New Event</h1>
-  <form method='POST' class='event-form'>{% csrf_token %}
-    {{ form.as_p }}
-    <button type='submit' class='save btn btn-default'>Save</button>
-  </form>
-
-{% endblock %}
+      {% endblock %}
+    </body>
+</html>
