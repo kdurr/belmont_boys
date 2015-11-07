@@ -1,0 +1,9 @@
+{% if chore_list %}
+    <ul>
+    {% for chore in chore_list %}
+        <li><a href="{% url 'chores:detail' chore.id %}">{{ chore.description }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No chores exist.</p>
+{% endif %}

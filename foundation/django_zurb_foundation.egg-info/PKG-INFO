@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: django-zurb-foundation
+Version: 5.5.0
+Summary: Django Zurb Foundation package.
+Home-page: https://github.com/amarsahinovic/django-zurb-foundation
+Author: Amar Šahinović
+Author-email: amar@sahinovic.com
+License: BSD License
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Utilities

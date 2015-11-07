@@ -1,0 +1,12 @@
+<h1>{{ roomie.name }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'chores:results' event.id %}" method="post">
+{% csrf_token %}
+{% for event in event.chore_set.all %}
+    <input type="radio" name="chore" id="chore{{ forloop.counter }}" value="{{ chore.id }}" />
+    <label for="chore{{ forloop.counter }}">{{ chore.description }}</label><br />
+{% endfor %}
+<input type="submit" value="Vote" />
+</form>

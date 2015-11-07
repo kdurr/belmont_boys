@@ -1,0 +1,9 @@
+{% if roomie_list %}
+    <ul>
+    {% for roomie in roomie_list %}
+        <li><a href="{% url 'chores:detail' roomie.id %}">{{ roomie.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No roomies exist.</p>
+{% endif %}
