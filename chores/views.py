@@ -6,6 +6,7 @@ from .models import *
 from .forms import EventForm
 
 def index(request):
+  event_list = Event.objects.order_by('date')
   roomie_list = Roomie.objects.order_by('name')
   chore_list = Chore.objects.order_by('description')
 
@@ -19,12 +20,16 @@ def index(request):
       else:
         chore_count[chore.description] = [event_list.filter(chore__description=chore.description).filter(roomie__name=roomie.name).count()]
 
+  roomie_chores = {}
+  for roomie in roomie_list:
+    roomie_chores[roomie.name] = event_list.filter(roomie__name=roomie.name).count()
 
   context = {
     'event_list': event_list,
     'roomie_list': roomie_list,
     'chore_list': chore_list,
     'chore_count': chore_count,
+    'roomie_chores': roomie_chores,
   }
   return render(request, 'chores/index.html', context)
 

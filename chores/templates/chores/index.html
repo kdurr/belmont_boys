@@ -11,18 +11,29 @@
                 <tr>
                     <th width='200'>Chore Names</th>
                     {% for roomie in roomie_list %}
-                        <th width='200'>{{ roomie.name }}</th>
+                        <th width='200'>{{roomie.name}}</th>
                     {% endfor %}
                 </tr>
             </thead>
             <tbody>
                 {% for key, value in chore_count.items %}
                     <tr>
-                        <td>{{ key }}</td>
+                        <td>{{key}}</td>
                         {% for count in value %}
-                            <td>{{ count }}</td>
+                            <td>{{count}}</td>
                         {% endfor %}
                     <tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <table>
+            <tbody>
+                {% for key, value in roomie_chores.items %}
+                    <tr>
+                        <td>{{key}}</td>
+                        <td>{{value}}</td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
