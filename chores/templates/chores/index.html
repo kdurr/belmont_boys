@@ -6,16 +6,26 @@
     <body>
         <a href="{% url 'chores:event_new' %}" class='new-event'>Add New Event</a>
 
-        {% if event_list %}
-            <ul>
-            {% for event in event_list %}
-                <li>{{ event.roomie }}</li>
-                <div>{{ event.chore }}</div>
-                <div><a href="{% url 'chores:detail' event.id %}">{{ event.comment }}</a></div>
-            {% endfor %}
-            </ul>
-        {% else %}
-            <p>No events exist.</p>
-        {% endif %}
+        <table>
+            <thead>
+                <tr>
+                    <th width='200'>Chore Names</th>
+                    {% for roomie in roomie_list %}
+                        <th width='200'>{{ roomie.name }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, value in chore_count.items %}
+                    <tr>
+                        <td>{{ key }}</td>
+                        {% for count in value %}
+                            <td>{{ count }}</td>
+                        {% endfor %}
+                    <tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
     </body>
 </html>
