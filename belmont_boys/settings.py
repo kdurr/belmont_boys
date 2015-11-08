@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'belmont_boys.wsgi.application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 if ON_HEROKU:
-    DATABASES['default'] =  dj_database_url.config()
+    DATABASES['default'] =  dj_database_url.config('postgres://houjlwxoeeqdup:Lg-NsX3hc7r3WxvweIhN6dxfeX@ec2-107-21-219-201.compute-1.amazonaws.com:5432/belmont-boys')
 else:
     DATABASES = {
         'default': {
