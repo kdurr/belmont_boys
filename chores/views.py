@@ -57,7 +57,7 @@ def event_new(request):
     if form.is_valid():
       event = form.save(commit=False)
       event.save()
-      # return redirect('index', pk=event.pk)
+      return redirect('/')
   else:
     form = EventForm()
   return render(request, 'chores/event_new.html', {'form': form})
