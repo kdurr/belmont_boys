@@ -17,5 +17,6 @@ Including another URLconf
 from django.conf.urls import include, url
 
 urlpatterns = [
-    url(r'^chores/', include('chores.urls', namespace='chores')),
+    url(r'', include('chores.urls', namespace='chores')),
+    # url(r'^chores/', include('chores.urls', namespace='chores')),
 ]
