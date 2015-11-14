@@ -9,6 +9,10 @@ def index(request):
   event_list = Event.objects.order_by('date')
   roomie_list = Roomie.objects.order_by('name')
   chore_list = Chore.objects.order_by('description')
+  last_bath = event_list.filter(chore__description='Bathroom').last().date
+  last_trash = event_list.filter(chore__description='Trash').last().date
+  last_kitchen = event_list.filter(chore__description='Kitchen').last().date
+  last_floor = event_list.filter(chore__description='Floors').last().date
 
   chore_count = {}
   for chore in chore_list:
@@ -30,6 +34,10 @@ def index(request):
     'chore_list': chore_list,
     'chore_count': chore_count,
     'roomie_chores': roomie_chores,
+    'last_bath': datetime.utcfromtimestamp(last_bath),
+    'last_trash': last_trash,
+    'last_kitchen': last_kitchen,
+    'last_floor': last_floor,
   }
   return render(request, 'chores/index.html', context)
 
