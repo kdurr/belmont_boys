@@ -9,10 +9,14 @@ def index(request):
   event_list = Event.objects.order_by('date')
   roomie_list = Roomie.objects.order_by('name')
   chore_list = Chore.objects.order_by('description')
-  last_bath = event_list.filter(chore__description='Bathroom').last().date
-  last_trash = event_list.filter(chore__description='Trash').last().date
-  last_kitchen = event_list.filter(chore__description='Kitchen').last().date
-  last_floor = event_list.filter(chore__description='Floors').last().date
+  if hasattr(event_list.filter(chore__description='Bathroom').last(), 'date'):
+    last_bath = event_list.filter(chore__description='Bathroom').last().date
+  if hasattr(event_list.filter(chore__description='Trash').last(), 'date'):
+    last_trash = event_list.filter(chore__description='Trash').last().date
+  if hasattr(event_list.filter(chore__description='Kitchen').last(), 'date'):
+    last_kitchen = event_list.filter(chore__description='Kitchen').last().date
+  if hasattr(event_list.filter(chore__description='Floors').last(), 'date'):
+    last_floor = event_list.filter(chore__description='Floors').last().date
 
   chore_count = {}
   for chore in chore_list:
