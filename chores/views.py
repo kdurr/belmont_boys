@@ -11,12 +11,20 @@ def index(request):
   chore_list = Chore.objects.order_by('description')
   if hasattr(event_list.filter(chore__description='Bathroom').last(), 'date'):
     last_bath = event_list.filter(chore__description='Bathroom').last().date
+  else:
+    last_bath = nil
   if hasattr(event_list.filter(chore__description='Trash').last(), 'date'):
     last_trash = event_list.filter(chore__description='Trash').last().date
+  else:
+    last_kitchen = nil
   if hasattr(event_list.filter(chore__description='Kitchen').last(), 'date'):
     last_kitchen = event_list.filter(chore__description='Kitchen').last().date
+  else:
+    last_kitchen = nil
   if hasattr(event_list.filter(chore__description='Floors').last(), 'date'):
     last_floor = event_list.filter(chore__description='Floors').last().date
+  else:
+    last_floor = nil
 
   chore_count = {}
   for chore in chore_list:
