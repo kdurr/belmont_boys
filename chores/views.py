@@ -38,7 +38,7 @@ def index(request):
     'chore_list': chore_list,
     'chore_count': chore_count,
     'roomie_chores': roomie_chores,
-    'last_bath': datetime.utcfromtimestamp(last_bath),
+    'last_bath': last_bath,
     'last_trash': last_trash,
     'last_kitchen': last_kitchen,
     'last_floor': last_floor,
