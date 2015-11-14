@@ -16,7 +16,7 @@ def index(request):
   if hasattr(event_list.filter(chore__description='Trash').last(), 'date'):
     last_trash = event_list.filter(chore__description='Trash').last().date
   else:
-    last_kitchen = ''
+    last_trash = ''
   if hasattr(event_list.filter(chore__description='Kitchen').last(), 'date'):
     last_kitchen = event_list.filter(chore__description='Kitchen').last().date
   else:
