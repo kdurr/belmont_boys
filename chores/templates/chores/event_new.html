@@ -1,16 +1,37 @@
-{% load staticfiles %}
-<html>
-    <head>
-        <link rel="stylesheet" href="{% static 'foundation/css/foundation.css' %}">
-    </head>
-    <body>
-      {% block content %}
-        <h1>New Event</h1>
-        <form method='POST' class='event-form'>{% csrf_token %}
-          {{ form.as_p }}
-          <button type='submit' class='save btn btn-default'>Save</button>
-        </form>
-
-      {% endblock %}
-    </body>
-</html>
+<h1>Add New Event</h1>
+<div class='small-6 columns'>
+  <form role='form' method='POST' class='event-form'>{% csrf_token %}
+    {% if form.non_field_errors %}
+      <p class="error">
+      	{% for error in form.non_field_errors %}
+      	  {{ error }}
+      	{% endfor %}
+      </p>
+      {% endif %}
+       <!-- Iterate over the fields in a form and render them  -->
+      {% for field in form %}
+        <div class="form-group">
+          <!-- Render the field label tag -->
+    		  {{ field.label_tag }}
+          <!-- If the field is required, display a * next to the field label -->
+          {% if field.field.required %}
+          *
+          {% endif %}
+          <br/>
+          <!-- Render the input field -->
+    		  {{ field }}
+    		  <!-- Iterate over the field's errors, if any and display
+               them one by one in a error alert
+          -->
+    		  {% if field.errors %}
+      		  <p class="error">
+        		  {% for error in field.errors %}
+          		  {{ error }}
+        		  {% endfor %}
+      		  </p>
+    		  {% endif %}
+        </div>
+    {% endfor %}
+    <input type='submit' class='save btn btn-default' value="Save"/>
+  </form>
+</div>

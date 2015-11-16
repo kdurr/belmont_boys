@@ -1,9 +1,10 @@
-# from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 
 from .models import *
 
 from .forms import EventForm
+
+from django.template import Template
 
 def index(request):
   event_list = Event.objects.order_by('date')
@@ -40,6 +41,15 @@ def index(request):
   for roomie in roomie_list:
     roomie_chores[roomie.name] = event_list.filter(roomie__name=roomie.name).count()
 
+  if request.method == 'POST':
+    form = EventForm(request.POST)
+    if form.is_valid():
+      # event = form.save(commit=False)
+      # event.save()
+      form.save()
+  else:
+    form = EventForm()
+
   context = {
     'event_list': event_list,
     'roomie_list': roomie_list,
@@ -50,6 +60,7 @@ def index(request):
     'last_trash': last_trash,
     'last_kitchen': last_kitchen,
     'last_floor': last_floor,
+    'form': form,
   }
   return render(request, 'chores/index.html', context)
 
@@ -75,9 +86,9 @@ def event_new(request):
   if request.method == 'POST':
     form = EventForm(request.POST)
     if form.is_valid():
-      event = form.save(commit=False)
-      event.save()
-      return redirect('/')
+      # event = form.save(commit=False)
+      # event.save()
+      form.save()
   else:
     form = EventForm()
   return render(request, 'chores/event_new.html', {'form': form})
