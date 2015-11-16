@@ -11,3 +11,15 @@ function sideNav() {
 $(window).resize(function() {
   sideNav();
 });
+
+$(document).ready(function() {
+  $('.item').on('click', function() {
+    elementId = this.getAttribute('href');
+    $('.item').removeClass('active');
+    $(this).addClass('active');
+    $('#dashboard').addClass('hide');
+    $('#new-event').addClass('hide');
+    $('#recent-activity').addClass('hide');
+    $(elementId).removeClass('hide');
+  });
+});

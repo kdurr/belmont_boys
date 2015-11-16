@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="{% static 'css/chores.css' %}">
         <script type="text/javascript" src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'foundation/js/foundation.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'foundation/js/foundation/foundation.offcanvas.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/chores.js' %}"></script>
     </head>
     <body>
@@ -16,97 +17,101 @@
                 </li>
             </ul>
         </nav> -->
-        <div class="off-canvas-wrap move-right" data-offcanvas>
-            <div class="inner-wrap">
-                <a class="left-off-canvas-toggle" href="#"><i class="fi-list"></i></a>
+        <div class='off-canvas-wrap move-right' data-offcanvas>
+            <div class='inner-wrap'>
+                <a class='left-off-canvas-toggle' href='#'><i class='fi-list'></i></a>
 
                 <!-- Off Canvas Menu -->
-                <aside class="left-off-canvas-menu">
-                  <div class="icon-bar vertical five-up">
-                      <a class="item active">
-                        <i class="fi-graph-trend"></i>
+                <aside class='left-off-canvas-menu'>
+                  <div class='icon-bar vertical five-up'>
+                      <a href='#dashboard' class='item active'>
+                        <i class='fi-graph-trend'></i>
                         <label>Dashboard</label>
                       </a>
-                      <a class="item">
-                       <i class="fi-plus"></i>
+                      <a href='#new-event' class='item'>
+                       <i class='fi-plus'></i>
                         <label>New Event</label>
                       </a>
-                      <a class="item">
-                        <i class="fi-results-demographics"></i>
+                      <a class='item'>
+                        <i class='fi-results-demographics'></i>
                         <label>Recent Activity</label>
                       </a>
                     </div>
                 </aside>
 
                 <!-- main content goes here -->
-                <div class='tabs-content'>
-                    <div id='dashboard' class='content active'>
-                        <header>
-                            <div class='small-12 columns'>
-                                <h3 class='text-center'>Dashboard</h3>
-                            </div>
-                        </header>
-                        <div class='row ad-block'>
-                            <table>
-                                <thead>
+                <div id='dashboard' class='content active'>
+                    <header>
+                        <div class='small-12 columns'>
+                            <h3 class='text-center'>Dashboard</h3>
+                        </div>
+                    </header>
+                    <div class='row ad-block'>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th width='200'>Chore Names</th>
+                                    {% for roomie in roomie_list %}
+                                        <th width='200'>{{roomie.name}}</th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for key, value in chore_count.items %}
                                     <tr>
-                                        <th width='200'>Chore Names</th>
-                                        {% for roomie in roomie_list %}
-                                            <th width='200'>{{roomie.name}}</th>
+                                        <td>{{key}}</td>
+                                        {% for count in value %}
+                                            <td>{{count}}</td>
                                         {% endfor %}
-                                    </tr>
-                                </thead>
+                                    <tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <div class='small-6 columns'>
+                            <table>
                                 <tbody>
-                                    {% for key, value in chore_count.items %}
+                                    {% for key, value in roomie_chores.items %}
                                         <tr>
                                             <td>{{key}}</td>
-                                            {% for count in value %}
-                                                <td>{{count}}</td>
-                                            {% endfor %}
-                                        <tr>
+                                            <td>{{value}}</td>
+                                        </tr>
                                     {% endfor %}
                                 </tbody>
                             </table>
-                            <div class='small-6 columns'>
-                                <table>
-                                    <tbody>
-                                        {% for key, value in roomie_chores.items %}
-                                            <tr>
-                                                <td>{{key}}</td>
-                                                <td>{{value}}</td>
-                                            </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class='small-6 columns'>
-                                <table>
-                                  <tr>
-                                    <th scope="column">Last Bathroom Clean</th>
-                                    <th scope="column">Last Trash Takeout</th>
-                                  </tr>
-                                  <tr>
-                                    <td>{{ last_bath }}</td>
-                                    <td>{{ last_trash }}</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="column">Last Kitchen Clean</th>
-                                    <th scope="column">Last Floor Clean</th>
-                                  </tr>
-                                  <tr>
-                                    <td>{{ last_kitchen }}</td>
-                                    <td>{{ last_floor }}</td>
-                                  </tr>
-                                </table>
-                            </div>
+                        </div>
+                        <div class='small-6 columns'>
+                            <table>
+                              <tr>
+                                <th scope="column">Last Bathroom Clean</th>
+                                <th scope="column">Last Trash Takeout</th>
+                              </tr>
+                              <tr>
+                                <td>{{ last_bath }}</td>
+                                <td>{{ last_trash }}</td>
+                              </tr>
+                              <tr>
+                                <th scope="column">Last Kitchen Clean</th>
+                                <th scope="column">Last Floor Clean</th>
+                              </tr>
+                              <tr>
+                                <td>{{ last_kitchen }}</td>
+                                <td>{{ last_floor }}</td>
+                              </tr>
+                            </table>
                         </div>
                     </div>
+                </div>
 
-                    <div class='content hide' id='new-event'>
-                        <!-- {% include 'chores/event_new.html' %} -->
+                <div class='row ad-block'>
+                    <div id='new-event' class='content hide'>
+                        {% include 'chores/event_new.html' %}
                     </div>
+                </div>
 
-                    <div id='recent-activity' class='content'>
+
+                <div class='row ad-block'>
+                    <div id='recent-activity' class='content hide'>
+                        <p>I don't exist yet!</p>
                     </div>
                 </div>
 
